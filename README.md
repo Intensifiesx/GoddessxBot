@@ -75,7 +75,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/m support`: Get a link to the support server
 - `/m userinfo`: Get information about a user
 - `/m vote`: Get a link to vote for the bot
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/e388c82c-4700-49c1-8e2f-7df559d20d5e"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/0a1d7031-694c-4015-af7a-1a1b9b4d6831"  width="40%" height="40%">
 
 ### Food
 - `/foods food`: Get a random food suggestion
@@ -87,7 +87,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/foods recipe`: Get a random recipe
 - `/foods odfood`: Get a random odd food suggestion
 - `/foods steak`: Get a random steak recipe
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/69fe0829-0594-461d-9eb8-a995d260ade5"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/ff576222-9934-4e84-9311-89572dae1e25"  width="40%" height="40%">
 
 ### Pets
 - `/pets bunny`: Display a picture of a bunny
@@ -99,7 +99,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/pets frog`: Display a picture of a frog
 - `/pets hamster`: Display a picture of a hamster
 - `/pets snake`: Display a picture of a snake
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/e3edbdee-f48e-43b7-af98-7add632452c4"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/4164f051-e303-4ad5-b1ac-200b6d89f7f1"  width="40%" height="40%">
 
 ### Memes
 - `/memes meme`: Display a random meme
@@ -107,4 +107,4 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/memes jojomeme`: Display a random JoJo meme
 - `/memes mcmeme`: Display a random Minecraft meme
 - `/memes purememe`: Display a random wholesome meme
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/9026f8e0-586f-4086-b7ca-54e85c511c1c"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/9091b74b-db42-4476-8d8d-88060ea3da36"  width="40%" height="40%">
