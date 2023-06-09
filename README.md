@@ -5,11 +5,10 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 # How to Start
 - `Step 1`: Invite Goddessx to your Discord server using <a href="https://discord.com/oauth2/authorize?client_id=625628505954189322&permissions=2147871814&scope=bot%20applications.commands">this link</a>
 - `Step 2`: Give all necessary permissions for the bot to function.
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/a77a3a54-7f99-4b58-925e-f6820dabb567" width="20%" height="20%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/b3132870-418d-4478-9754-89cf7aaab15b" width="20%" height="20%">
 
 - `Step 3`: Access commands using `/`. Example `/define`. For the list of all commands and a clean embed, use `/Help` and that's all. Enjoy using the bot.
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/0be0321e-78fa-43ec-90c0-76b8868306c9" width="50%" height="50%">
-
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/a1847782-76bb-4bc3-8898-2bd146c7928e" width="50%" height="50%">
 
 ## Command Categories
 ### Emotes
@@ -25,8 +24,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/e sadrain`: Sadrain emote
 - `/e sleep`: Sleep emote
 - `/e smug`: Smug emote
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/e9f53e38-3f17-4578-afec-53a0f5595966"  width="40%" height="40%">
-
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/7c260903-c445-496b-b857-cdaf0ab058d8"  width="40%" height="40%">
 
 ### Actions
 - `/a bonk`: Bonk action
@@ -41,7 +39,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/a poke`: Poke action
 - `/a slap`: Slap action
 - `/a stare`: Stare action
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/512140c9-0e2b-482f-8f8a-a38337894591"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/3e9a666f-24b7-4458-b8c1-389e7fe3b345"  width="40%" height="40%">
 
 ### Fun
 - `/fun 8ball`: Ask the magic 8-ball a question
@@ -61,7 +59,7 @@ A feature-rich Discord bot written in JavaScript using Node.js and Discord.js. T
 - `/fun urban`: Search for a term on Urban Dictionary
 - `/fun uwuify`: Convert text into uwu language
 - `/fun valid`: Check if a user is valid
-<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/a9b33a75-a38b-4001-af79-4e63010bcdcb"  width="40%" height="40%">
+<img src="https://github.com/Intensifiesx/GoddessxBot/assets/55933220/840e6394-efdf-4861-9030-05b214ee7b7f"  width="40%" height="40%">
 
 ### Moderation
 - `/m avatar`: Get the avatar of a user
