@@ -46,4 +46,5 @@ If you have any questions or concerns about these Terms or Goddessx, please cont
 By using Goddessx, you acknowledge that you have read, understood, and agreed to these Terms of Service. Please enjoy using Goddessx to enhance your Discord experience ♥♡.
 
 **Zain**
+
 **Discord: intensifiesx**
