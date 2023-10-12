@@ -33,7 +33,7 @@ We may update this Privacy Policy to reflect changes in our practices or for oth
 
 ## 5. Contact Information
 
-If you have any questions or concerns about this Privacy Policy or the data we collect, please contact us at [Your Contact Information].
+If you have any questions or concerns about this Privacy Policy or the data we collect, please contact us with our [Support Server](https://discord.gg/SX66TBMY5E).
 
 Thank you for using Goddessx. We take data privacy seriously and do not collect any personal data from you. We hope you enjoy your experience with our Discord bot ♥♡.
 
