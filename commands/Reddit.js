@@ -7,7 +7,9 @@
 } from 'discord.js'
 import randColor from './RandColor.js'
 import request from 'request';
+import { exec } from 'child_process';
 import axios from 'axios';
+import path from 'path'
 let msgAuthor, interact
 
 async function deletePost (i) {
@@ -44,22 +46,19 @@ async function reddit (subreddit, interaction, nsfw) {
   interact = interaction // Interaction for deletePost
 
   try {
-    const url = `https://www.reddit.com/r/${subreddit}.json`;
-    const userAgent = 'Mozilla/5.0 (Linux; Android 13; SM-G991U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36'; // Replace this with an appropriate User-Agent string
-    
-    // Make a GET request with a custom User-Agent header
-    axios.get(url, {
-      headers: {
-        'User-Agent': userAgent,
-      },
-    })
-      .then(response => {
-        // Handle the response here
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error.message);
-      });
+    const pythonScriptPath = 'Scrape.py';
+
+    exec(`python ${process.cwd()}\\commands\\${pythonScriptPath}`, (error, stdout, stderr) => {
+
+      // Process the output from Python (stdout)
+      const pythonOutput = stdout.trim().split('\n');
+      const posts = [];
+
+      for (let i = 0; i < pythonOutput.length; i++) 
+        posts.push(pythonOutput[i].replace('\r',''));
+
+      console.log('Posts from Python:', posts);
+    });
 
 
     // request(`https://www.reddit.com/r/${subreddit}.json`, function (error, response, body) {
