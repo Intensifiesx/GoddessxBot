@@ -55,7 +55,9 @@ async function reddit (subreddit, interaction, nsfw) {
         }
       }
     )
-      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+      })
       .then(body => {
         // Get response body
         post = // Get random post
