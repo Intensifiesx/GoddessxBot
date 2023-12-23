@@ -6,10 +6,7 @@
   PermissionsBitField
 } from 'discord.js'
 import randColor from './RandColor.js'
-import request from 'request';
-import { exec } from 'child_process';
-import axios from 'axios';
-import path from 'path'
+import fetch from 'node-fetch';
 let msgAuthor, interact
 
 async function deletePost (i) {
@@ -46,26 +43,22 @@ async function reddit (subreddit, interaction, nsfw) {
   interact = interaction // Interaction for deletePost
 
   try {
-    const pythonScriptPath = 'Scrape.py';
-
-    exec(`python ${process.cwd()}\\commands\\${pythonScriptPath}`, (error, stdout, stderr) => {
-
-      // Process the output from Python (stdout)
-      const pythonOutput = stdout.trim().split('\n');
-      const posts = [];
-
-      for (let i = 0; i < pythonOutput.length; i++) 
-        posts.push(pythonOutput[i].replace('\r',''));
-
-      console.log('Posts from Python:', posts);
-    });
-
-
-    // request(`https://www.reddit.com/r/${subreddit}.json`, function (error, response, body) {
-    //   console.error('error:', error); // Print the error if one occurred
-    //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //   console.log('body:', body); // Print the HTML for the Google homepage.
-    // });
+    await fetch(
+        `https://api.allorigins.win/raw?url=https://www.reddit.com/r/Foot_Island/hot.json`,
+        {
+            method: 'GET',
+            headers: {
+            'User-Agent':
+                'web:com.goddessx.myredditapp:v0.39.91 (by u/intensifiesx)'
+            }
+        }
+        )
+        .then(response => response.json())
+        .then(body => {
+            body.data.children.forEach(i => {
+                console.log(i.data.title + '\n' + i.data.url)
+            })
+        });
 
     // let post, image, isGallery // Variables
     // await fetch(
