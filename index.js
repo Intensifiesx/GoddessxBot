@@ -25,7 +25,6 @@ let cmdCount = 0,
 const file = [
   await import("./commands/Help.js"),
   await import("./commands/Actions/Action.js"),
-  await import("./commands/ActionsNSFW/ActionNsfw.js"),
   await import("./commands/Emotes/Emotes.js"),
   await import("./commands/Memes/Memes.js"),
   await import("./commands/Mod/Mod.js"),
