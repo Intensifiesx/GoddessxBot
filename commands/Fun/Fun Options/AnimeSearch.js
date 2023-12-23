@@ -1,10 +1,5 @@
 import randColor from "../../RandColor.js";
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  EmbedBuilder,
-  ButtonStyle,
-} from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } from "discord.js";
 import malScraper from "mal-scraper";
 
 const AnimeSearch = {
@@ -15,7 +10,7 @@ const AnimeSearch = {
       .getInfoFromName(search)
       .then(async (data) => {
         if (!data.title) return interaction.reply("Nothing found!");
-        console.log(data);
+
         var link = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
               .setLabel("Link")

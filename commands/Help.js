@@ -8,22 +8,30 @@ import {
 import randColor from "./RandColor.js";
 const file = [
   await import("./Actions/Action.js"),
+  await import("./ActionsNSFW/ActionNsfw.js"),
   await import("./Emotes/Emotes.js"),
   await import("./Memes/Memes.js"),
   await import("./Mod/Mod.js"),
   await import("./Fun/Fun.js"),
   await import("./Pets/Pets.js"),
   await import("./Foods/Foods.js"),
+  await import("./Hentai/Hentai.js"),
+  await import("./Porn/Porn.js"),
 ];
 var action = getCommands(file[0]), // Action menu commands
+  aNsfw = getCommands(file[1]), // ActionNSFW menu commands
   emote = getCommands(file[2]), // Emotes menu commands
   meme = getCommands(file[3]), // Memes menu commands
   mod = getCommands(file[4]), // Mod menu commands
   fun = getCommands(file[5]), // Fun menu commands
   pet = getCommands(file[6]), // Pets menu commands
   food = getCommands(file[7]), // Foods menu commands
+  hentai = getCommands(file[8]), // Hentai menu commands
+  porn = getCommands(file[9]), // Porn menu commands
+  nsfwHelp = "```🔞```",
   version = "0.31.0",
-  interact;
+  interact,
+  isNSFW;
 
 // Create list of commands for help menu
 function getCommands(file) {
@@ -39,6 +47,7 @@ export default {
     .setName("help")
     .setDescription("🆘 All commands for Goddessx!"),
   async execute(interaction, client) {
+    isNSFW = interaction.channel === null || interaction.channel.nsfw;
     interact = interaction;
 
     // Send main menu with buttons
@@ -98,6 +107,12 @@ const Menu = {
         inline: true,
       }
     );
+    if (isNSFW)
+      mainEmbed.addFields({
+        name: "🔞 __NSFW__ 🔞",
+        value: nsfwHelp,
+        inline: true,
+      });
     mainEmbed.addFields({
       name: "💜 __Creator__ 💜",
       value: "```💜```",
@@ -120,6 +135,12 @@ const Menu = {
         inline: false,
       }
     );
+    if (isNSFW)
+      mainEmbed.addFields({
+        name: `🔞 __NSFW Actions (Ex. /ansfw Frenchkiss)__ 🔞`,
+        value: aNsfw,
+        inline: false,
+      });
     return mainEmbed;
   },
   // Fun menu
@@ -157,6 +178,19 @@ const Menu = {
         value: meme,
         inline: false,
       }
+    );
+    return mainEmbed;
+  },
+  // NSFW menu
+  nsfw: function () {
+    var mainEmbed = this.embed();
+    mainEmbed.setTitle("🔞 NSFW Menu 🔞").addFields(
+      {
+        name: `🐙 __Hentai (Ex. /h 2B)__ 🐙`,
+        value: hentai,
+        inline: false,
+      },
+      { name: `💕 __Porn (Ex. /p Anal)__ 💕`, value: porn, inline: false }
     );
     return mainEmbed;
   },
@@ -216,7 +250,7 @@ const Buttons = {
         );
     }
   },
-  // Row 2 buttons = Reddit, Creator
+  // Row 2 buttons = Reddit, NSFW, Creator
   rowTwo: function () {
     var row3 = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
@@ -224,6 +258,13 @@ const Buttons = {
         .setCustomId("reddit")
         .setStyle(ButtonStyle.Primary)
     );
+    if (isNSFW)
+      row3.addComponents(
+        new ButtonBuilder()
+          .setLabel("🔞")
+          .setCustomId("nsfw")
+          .setStyle(ButtonStyle.Primary)
+      );
     row3.addComponents(
       new ButtonBuilder()
         .setLabel("💜")

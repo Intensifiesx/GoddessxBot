@@ -7,20 +7,13 @@
 //Main libraries
 import { Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest";
-import {
-  Client,
-  Collection,
-  IntentsBitField,
-  PermissionsBitField,
-  ActivityType,
-} from "discord.js";
+import { Client, Collection, IntentsBitField, PermissionsBitField, ActivityType } from "discord.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 //Setting intents, collections and token
 const client = new Client({
-    intents: [
-      IntentsBitField.Flags.Guilds,
-      IntentsBitField.Flags.GuildMessages,
-    ],
+    intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages],
   }),
   rest = new REST({ version: "9" }).setToken(process.env.TOKEN),
   commands = new Collection();
@@ -32,12 +25,13 @@ let cmdCount = 0,
 const file = [
   await import("./commands/Help.js"),
   await import("./commands/Actions/Action.js"),
+  await import("./commands/ActionsNSFW/ActionNsfw.js"),
   await import("./commands/Emotes/Emotes.js"),
   await import("./commands/Memes/Memes.js"),
   await import("./commands/Mod/Mod.js"),
   await import("./commands/Fun/Fun.js"),
   await import("./commands/Pets/Pets.js"),
-  await import("./commands/Foods/Foods.js"),
+  await import("./commands/Foods/Foods.js")
 ].map((file) => {
   commands.set(file.default.data.name, file.default);
   cmds.push(file.default.data.toJSON());
@@ -51,7 +45,7 @@ const file = [
     await rest.put(Routes.applicationCommands(process.env.CLIENTID), {
       body: cmds,
     });
-    console.log(`✓ Reloaded ${cmds.length} application slash commands!`);
+    console.log(`✓ Reloaded ${cmds.length} application slash commands!!!`);
   } catch (error) {
     console.error(error);
   }
@@ -87,9 +81,7 @@ client.on("interactionCreate", async (interaction) => {
   var commandName = interaction.commandName;
 
   // Log command
-  console.log(
-    `#${++cmdCount} ${interaction.user.username} | Used: ${interaction}`
-  );
+  console.log(`#${++cmdCount} ${interaction.user.username} | Used: ${interaction}`);
 
   try {
     //Check if channel exists and has permission. If not, return.
