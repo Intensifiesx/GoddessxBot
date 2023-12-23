@@ -25,12 +25,15 @@ let cmdCount = 0,
 const file = [
   await import("./commands/Help.js"),
   await import("./commands/Actions/Action.js"),
+  await import("./commands/ActionsNSFW/ActionNsfw.js"),
   await import("./commands/Emotes/Emotes.js"),
   await import("./commands/Memes/Memes.js"),
   await import("./commands/Mod/Mod.js"),
   await import("./commands/Fun/Fun.js"),
   await import("./commands/Pets/Pets.js"),
-  await import("./commands/Foods/Foods.js")
+  await import("./commands/Foods/Foods.js"),
+  await import("./commands/Hentai/Hentai.js"),
+  await import("./commands/Porn/Porn.js"),
 ].map((file) => {
   commands.set(file.default.data.name, file.default);
   cmds.push(file.default.data.toJSON());

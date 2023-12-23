@@ -8,20 +8,26 @@ import {
 import randColor from "./RandColor.js";
 const file = [
   await import("./Actions/Action.js"),
+  await import("./ActionsNSFW/ActionNsfw.js"),
   await import("./Emotes/Emotes.js"),
   await import("./Memes/Memes.js"),
   await import("./Mod/Mod.js"),
   await import("./Fun/Fun.js"),
   await import("./Pets/Pets.js"),
   await import("./Foods/Foods.js"),
+  await import("./Hentai/Hentai.js"),
+  await import("./Porn/Porn.js"),
 ];
 var action = getCommands(file[0]), // Action menu commands
-  emote = getCommands(file[1]), // Emotes menu commands
-  meme = getCommands(file[2]), // Memes menu commands
-  mod = getCommands(file[3]), // Mod menu commands
-  fun = getCommands(file[4]), // Fun menu commands
-  pet = getCommands(file[5]), // Pets menu commands
-  food = getCommands(file[6]), // Foods menu commands
+  aNsfw = getCommands(file[1]), // ActionNSFW menu commands
+  emote = getCommands(file[2]), // Emotes menu commands
+  meme = getCommands(file[3]), // Memes menu commands
+  mod = getCommands(file[4]), // Mod menu commands
+  fun = getCommands(file[5]), // Fun menu commands
+  pet = getCommands(file[6]), // Pets menu commands
+  food = getCommands(file[7]), // Foods menu commands
+  hentai = getCommands(file[8]), // Hentai menu commands
+  porn = getCommands(file[9]), // Porn menu commands
   nsfwHelp = "```🔞```",
   version = "0.31.0",
   interact,
