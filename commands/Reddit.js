@@ -44,116 +44,122 @@ async function reddit (subreddit, interaction, nsfw) {
 
   try {
     let post, image, isGallery // Variables
-    await interaction.reply({
-      content: `Sorry for the inconvience, this command is currently disabled and will be back soon! Fixing command...`
+    await fetch(
+      //Create request
+      `https://www.reddit.com/r/${subreddit}/hot/.json`,
+      {
+        method: 'GET',
+        headers: {
+          'User-Agent':
+            'web:com.goddessx.myredditapp:v0.39.91 (by u/intensifiesx)'
+        }
+      }
+    )
+      .then(response => response.json())
+      .then(body => {
+        // Get response body
+        post = // Get random post
+          body.data.children[
+            Math.floor(Math.random() * body.data.children.length)
+          ].data
+        image = post.url // Get image url
+        isGallery = post.is_gallery // Get if post is a gallery
+
+        // Obtain new post if post is a gallery, comment post, or discord link
+        while (
+          isGallery ||
+          image.startsWith('https://www.reddit.com/r/') ||
+          image.startsWith('https://discord.gg/')
+        ) {
+          console.log('Obtaining new post');
+          post =
+            body.data.children[
+              Math.floor(Math.random() * body.data.children.length)
+            ].data
+          image = post.url
+          isGallery = post.is_gallery
+      }
     })
 
-    // response
-    //   .then(response =>response.json())
-    //   .then(body => {
-    //     // Get response body
-    //     post = // Get random post
-    //       body.data.children[
-    //         Math.floor(Math.random() * body.data.children.length)
-    //       ].data
-    //     image = post.url // Get image url
-    //     isGallery = post.is_gallery // Get if post is a gallery
+    // Get post details
+    var button = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setLabel('Link')
+          .setStyle(ButtonStyle.Link)
+          .setURL(`https://www.reddit.com${post.permalink}`),
+        new ButtonBuilder()
+          .setLabel('Remove')
+          .setStyle(ButtonStyle.Danger)
+          .setCustomId('deletePost')
+      ),
+      title = post.title.slice(0, 255),
+      isVideo = post.is_video,
+      author = post.author,
+      ups = post.ups,
+      isBad = false
 
-    //     // Obtain new post if post is a gallery, comment post, or discord link
-    //     while (
-    //       isGallery ||
-    //       image.startsWith('https://www.reddit.com/r/') ||
-    //       image.startsWith('https://discord.gg/')
-    //     ) {
-    //       console.log('Obtaining new post');
-    //       post =
-    //         body.data.children[
-    //           Math.floor(Math.random() * body.data.children.length)
-    //         ].data
-    //       image = post.url
-    //       isGallery = post.is_gallery
-    //   }
-    // })
+    // If post is a video, set isBad to true and get fallback url
+    if (isVideo || image.indexOf('https://v.') > -1) {
+      isBad = true
+      image = post.media.reddit_video.fallback_url
+    } else
+      [
+        // Check if image has these keywords
+        '.gifv',
+        'redgifs',
+        'https://www.pornhub.com/',
+        'https://imgur.com/a',
+        'youtu',
+        '/comments',
+        'gfycat'
+      ].forEach(bad => {
+        // If image has keyword, set isBad to true
+        if (image.indexOf(bad) > -1) isBad = true
+      })
 
-    // // Get post details
-    // var button = new ActionRowBuilder().addComponents(
-    //     new ButtonBuilder()
-    //       .setLabel('Link')
-    //       .setStyle(ButtonStyle.Link)
-    //       .setURL(`https://www.reddit.com${post.permalink}`),
-    //     new ButtonBuilder()
-    //       .setLabel('Remove')
-    //       .setStyle(ButtonStyle.Danger)
-    //       .setCustomId('deletePost')
-    //   ),
-    //   title = post.title.slice(0, 255),
-    //   isVideo = post.is_video,
-    //   author = post.author,
-    //   ups = post.ups,
-    //   isBad = false
+    title = `\"${title}\"`
 
-    // // If post is a video, set isBad to true and get fallback url
-    // if (isVideo || image.indexOf('https://v.') > -1) {
-    //   isBad = true
-    //   image = post.media.reddit_video.fallback_url
-    // } else
-    //   [
-    //     // Check if image has these keywords
-    //     '.gifv',
-    //     'redgifs',
-    //     'https://www.pornhub.com/',
-    //     'https://imgur.com/a',
-    //     'youtu',
-    //     '/comments',
-    //     'gfycat'
-    //   ].forEach(bad => {
-    //     // If image has keyword, set isBad to true
-    //     if (image.indexOf(bad) > -1) isBad = true
-    //   })
+    // If isBad is true, send regular message
+    if (isBad)
+      await interaction.reply({
+        components: [button],
+        content: `${title}\n✏️ **Posted by:** ${author} | :arrow_up: **Upvotes:** ${ups}\n**Provided by r/**${subreddit}\n${image}`
+      })
+    // else send embed
+    else
+      await interaction.reply({
+        components: [button],
+        embeds: [
+          new EmbedBuilder()
+            .setColor(randColor())
+            .setTitle(`${title}`)
+            .setDescription(
+              `✏️ **Posted by:** ${author}‎\n:arrow_up: **Upvotes:**  ${ups}`
+            )
+            .setImage(`${image}`)
+            .setTimestamp()
+            .setFooter({
+              text: `Provided by r/${subreddit}`,
+              iconURL: interaction.user.avatarURL()
+            })
+        ]
+      })
 
-    // title = `\"${title}\"`
-
-    // // If isBad is true, send regular message
-    // if (isBad)
-    //   await interaction.reply({
-    //     components: [button],
-    //     content: `${title}\n✏️ **Posted by:** ${author} | :arrow_up: **Upvotes:** ${ups}\n**Provided by r/**${subreddit}\n${image}`
-    //   })
-    // // else send embed
-    // else
-    //   await interaction.reply({
-    //     components: [button],
-    //     embeds: [
-    //       new EmbedBuilder()
-    //         .setColor(randColor())
-    //         .setTitle(`${title}`)
-    //         .setDescription(
-    //           `✏️ **Posted by:** ${author}‎\n:arrow_up: **Upvotes:**  ${ups}`
-    //         )
-    //         .setImage(`${image}`)
-    //         .setTimestamp()
-    //         .setFooter({
-    //           text: `Provided by r/${subreddit}`,
-    //           iconURL: interaction.user.avatarURL()
-    //         })
-    //     ]
-    //   })
-
-    // // Wait 120 seconds until the remove button is deleted
-    // setTimeout(async () => {
-    //   await interaction
-    //     .editReply({
-    //       components: [
-    //         new ActionRowBuilder().addComponents(
-    //           new ButtonBuilder()
-    //             .setLabel('Link')
-    //             .setStyle(ButtonStyle.Link)
-    //             .setURL(`https://www.reddit.com${post.permalink}`)
-    //         )
-    //       ]
-    //     })
-    //     .catch(err => {})
-    // }, 120000)
+    // Wait 120 seconds until the remove button is deleted
+    setTimeout(async () => {
+      await interaction
+        .editReply({
+          components: [
+            new ActionRowBuilder().addComponents(
+              new ButtonBuilder()
+                .setLabel('Link')
+                .setStyle(ButtonStyle.Link)
+                .setURL(`https://www.reddit.com${post.permalink}`)
+            )
+          ]
+        })
+        .catch(err => {})
+    }, 120000)
   } catch (e) {
     console.log(e)
   }
